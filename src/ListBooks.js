@@ -2,20 +2,8 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import BookShelf from './BookShelf'
 import './ListBooks.css'
+
 class ListBooks extends Component {
-  constructor() {
-    super();
-    this.state = {
-      hideCurrentlyReadingBook: false,
-      hideWantToReadBook: false,
-      hideReadBook: false
-    }
-  }
-  toggleCurrentlyBook() {
-    this.setState({
-      hideCurrentlyReadingBook: !this.state.hideCurrentlyReadingBook
-    })
-  }
   _countBook(numberOfBook) {
       if(numberOfBook === 0) {
         return 'No book yet'
@@ -42,14 +30,14 @@ class ListBooks extends Component {
           />
        
           <BookShelf
-            countbook= {this._countBook(wantToReadBooks.length)}
+            countbook={this._countBook(wantToReadBooks.length)}
             bookshelfTitle='Want to Read'
             bookshelfBooks={wantToReadBooks}
             onShelfChange={onShelfChange}
           />
        
           <BookShelf 
-            countbook= {this._countBook(readBooks.length)}
+            countbook={this._countBook(readBooks.length)}
             bookshelfTitle='Read' 
             bookshelfBooks={readBooks}
             onShelfChange={onShelfChange}

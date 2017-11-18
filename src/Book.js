@@ -7,7 +7,7 @@ class Book extends Component{
   };
   render() {
     const {book} = this.props;
-    let image = book.imageLinks ? book.imageLinks.thumbnail : 'https://books.google.com/googlebooks/images/no_cover_thumb.gif'
+    let image = book.imageLinks ? book.imageLinks.thumbnail : 'https://www.123freevectors.com/wp-content/uploads/new/icon/102-red-book-icon-free-vector-illustration.png'
     return (
       <div className="book">
         <div className="book-top">
@@ -30,7 +30,7 @@ class Book extends Component{
            </div>
          </div>
         <div className="book-title">{book.title}</div>
-        <div className="book-authors">{book.authors ? book.authors.join(", ")  :"  Author Unknown " }</div>
+        <div className="book-authors">{book.authors}</div>
       </div>
     );
   }   
