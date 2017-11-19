@@ -1,13 +1,17 @@
-import React, { Component } from 'react'
-import './Book.css'
+import React, { Component } from 'react';
+import './Book.css';
+
 class Book extends Component{
-  ShelfChanger = (e) => {
-    const shelf = e.target.value;
-    this.props.onShelfChange(this.props.book, shelf);
+  shelfChanger = (e) => {
+    const { value: shelf } = e.target;
+    const { book, onShelfChange } = this.props;
+    onShelfChange(book, shelf);
   };
+
   render() {
-    const {book} = this.props;
+    const { book } = this.props;
     let image = book.imageLinks ? book.imageLinks.thumbnail : 'https://www.123freevectors.com/wp-content/uploads/new/icon/102-red-book-icon-free-vector-illustration.png'
+    
     return (
       <div className="book">
         <div className="book-top">
@@ -18,9 +22,10 @@ class Book extends Component{
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
             backgroundPosition: 'center'
-          }}/>
+          }}
+          />
           <div className="book-shelf-changer">
-            <select onChange={this.ShelfChanger} value={book.shelf}>
+            <select onChange={this.shelfChanger} value={book.shelf}>
               <option value="none" disabled>Move to...</option>
               <option value="currentlyReading">Currently Reading</option>
               <option value="wantToRead">Want to Read</option>

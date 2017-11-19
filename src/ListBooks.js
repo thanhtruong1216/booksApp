@@ -1,43 +1,33 @@
-import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
-import BookShelf from './BookShelf'
-import './ListBooks.css'
+import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
+import BookShelf from './BookShelf';
+import './ListBooks.css';
 
 class ListBooks extends Component {
-  _countBook(numberOfBook) {
-      if(numberOfBook === 0) {
-        return 'No book yet'
-      } else if (numberOfBook === 1) {
-        return 'Only 1 book'
-      } else {
-        return `${numberOfBook} books`
-      }
-    }
-
   render() {
-    const { onShelfChange } = this.props;
-    const currentlyReadingBooks = this.props.books.filter((book) => book.shelf === 'currentlyReading')
-    const wantToReadBooks = this.props.books.filter((book) => book.shelf === 'wantToRead')
-    const readBooks = this.props.books.filter((book) => book.shelf === 'read')
+    const { onShelfChange, books } = this.props;
+    const currentlyReadingBooks = books.filter((book) => book.shelf === 'currentlyReading');
+    const wantToReadBooks = books.filter((book) => book.shelf === 'wantToRead');
+    const readBooks = books.filter((book) => book.shelf === 'read');
+
     return(
       <div className="list-books">
         <div>
           <BookShelf
-            countbook={this._countBook(currentlyReadingBooks.length)}
+            numberOfBook={currentlyReadingBooks.length}
             bookshelfTitle='Currently Reading'
             bookshelfBooks={currentlyReadingBooks}
             onShelfChange={onShelfChange}  
           />
-       
           <BookShelf
-            countbook={this._countBook(wantToReadBooks.length)}
+            numberOfBook={wantToReadBooks.length}
             bookshelfTitle='Want to Read'
             bookshelfBooks={wantToReadBooks}
             onShelfChange={onShelfChange}
           />
        
           <BookShelf 
-            countbook={this._countBook(readBooks.length)}
+            numberOfBook={readBooks.length}
             bookshelfTitle='Read' 
             bookshelfBooks={readBooks}
             onShelfChange={onShelfChange}
