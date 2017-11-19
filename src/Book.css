@@ -45,3 +45,11 @@ option:checked {
   color: red;  
 }
 
+.book-cover {
+	width: 128px;
+  height: 193px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+

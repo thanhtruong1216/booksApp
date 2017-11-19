@@ -16,7 +16,7 @@ class BookShelf extends Component {
     })
   }
 
-  bookCountString() {
+  bookCountHumanizeString() {
     const { numberOfBook } = this.props;
     if(numberOfBook === 0) {
       return 'No book to show'
@@ -46,23 +46,26 @@ class BookShelf extends Component {
     return bookNodes;
   }
 
-  render() {
+  renderShowHideButton() {
     const { show } = this.state;
-    const renderBooks = this.renderBooks();
-    const { bookshelfTitle, numberOfBook } = this.props;
-    const showHideButton = (
+    const { numberOfBook } = this.props;
+    return numberOfBook > 0 &&  (
       <button className="show-hide-button" 
         onClick={this.toggleButton}>{show ? 'Hide book' : 'Show book'}
       </button> 
     );
+  }
 
+  render() {
+    const { bookshelfTitle } = this.props;
+    
     return(
        <div className="bookshelf">
         <h2 className="bookshelf-title">{bookshelfTitle}</h2>
-        <h3>{this.bookCountString()}</h3>
-        {numberOfBook > 0 && showHideButton}
+        <h3>{this.bookCountHumanizeString()}</h3>
+        {this.renderShowHideButton()}
         <div className="bookshelf-books">
-          {renderBooks}
+          {this.renderBooks()}
         </div>
       </div>
     );

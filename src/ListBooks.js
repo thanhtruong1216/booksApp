@@ -3,35 +3,40 @@ import {Link} from 'react-router-dom';
 import BookShelf from './BookShelf';
 import './ListBooks.css';
 
+const BOOK_LISTS = [
+  {
+    title: 'Currently Reading',
+    shelfKey: 'currentlyReading',
+  },
+  {
+    title: 'Want to Read',
+    shelfKey: 'wantToRead',
+  },
+  {
+    title: 'Read',
+    shelfKey: 'read',
+  },
+];
+
 class ListBooks extends Component {
   render() {
     const { onShelfChange, books } = this.props;
-    const currentlyReadingBooks = books.filter((book) => book.shelf === 'currentlyReading');
-    const wantToReadBooks = books.filter((book) => book.shelf === 'wantToRead');
-    const readBooks = books.filter((book) => book.shelf === 'read');
-
     return(
       <div className="list-books">
         <div>
-          <BookShelf
-            numberOfBook={currentlyReadingBooks.length}
-            bookshelfTitle='Currently Reading'
-            bookshelfBooks={currentlyReadingBooks}
-            onShelfChange={onShelfChange}  
-          />
-          <BookShelf
-            numberOfBook={wantToReadBooks.length}
-            bookshelfTitle='Want to Read'
-            bookshelfBooks={wantToReadBooks}
-            onShelfChange={onShelfChange}
-          />
-       
-          <BookShelf 
-            numberOfBook={readBooks.length}
-            bookshelfTitle='Read' 
-            bookshelfBooks={readBooks}
-            onShelfChange={onShelfChange}
-          />
+          { BOOK_LISTS.map(({title, shelfKey}) => {
+              const bookListBooks = books.filter((book) => book.shelf === shelfKey);
+              return (
+                <BookShelf
+                  key={shelfKey}
+                  numberOfBook={bookListBooks.length}
+                  bookshelfTitle={title}
+                  bookshelfBooks={bookListBooks}
+                  onShelfChange={onShelfChange}  
+                />
+              )
+            })
+          }
         </div>
         <div className="open-search">
           <Link to="/search">Add a book</Link>

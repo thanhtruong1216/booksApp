@@ -9,7 +9,7 @@ class SearchBooks extends Component {
     result: []
   }
 
-  search= (e) => {
+  search = (e) => {
     const { value: query } = e.target;
     const { books } = this.props;
     if (!query) {
@@ -23,12 +23,13 @@ class SearchBooks extends Component {
       }
       result = result.map((book) => {
         const bookOnShelf = books.find(b => b.id === book.id);
-        book.shelf = bookOnShelf ? bookOnShelf.shelf: "null";
+        book.shelf = bookOnShelf ? bookOnShelf.shelf : null;
         return book;
       });
       this.setState({result});
     });
-  };
+  }
+
   render() {
     const { result } = this.state;
     const { onShelfChange } = this.props;
@@ -41,8 +42,8 @@ class SearchBooks extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {result && result.map((book, index) => (
-              <li key={book.id + index}>
+            {result && result.map((book) => (
+              <li key={book.id}>
                 <Book book={book} onShelfChange={onShelfChange}/>
               </li>
             ))}
@@ -53,4 +54,4 @@ class SearchBooks extends Component {
   }
 }
 
-export default SearchBooks
+export default SearchBooks;
