@@ -16,11 +16,8 @@ class BookShelf extends Component {
   }
 
   render() {
-    const { show } = this.state;
-    // const show = this.state.show;
-
+    const show = this.state.show;
     const { onShelfChange, bookshelfTitle, countbook, bookshelfBooks } = this.props;
-
     let bookNodes = null;
     if(show) {
       bookNodes = (
@@ -35,15 +32,12 @@ class BookShelf extends Component {
         </ol>
       )
     }
-    // const showHideButton = <button onClick={() => this.toggleButton()}>{buttonText}</button> 
-    // const showHideButton = <button onClick={this.toggleButton.bind(this)}>{buttonText}</button> 
-    const showHideButton = <button onClick={this.toggleButton}>{show ? 'Hide' : 'Show'}</button> 
+    const showHideButton = <button className="show-hide-button" onClick={this.toggleButton}>{show ? 'Hide book' : 'Show book'}</button> 
     return(
        <div className="bookshelf">
         <h2 className="bookshelf-title">{bookshelfTitle}</h2>
         <h3>{countbook}</h3>
         {showHideButton}
-
         <div className="bookshelf-books">
           {bookNodes}
         </div>

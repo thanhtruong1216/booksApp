@@ -18,3 +18,15 @@
   text-align: left;
 }
 
+.show-hide-button {
+	width: 80px;
+	height: 30px;
+	border: none;
+	background: brown;
+	color: white;
+	border-radius: 3px;
+	font-size: 13px;
+}
+.show-hide-button:focus {
+	outline: none;
+}

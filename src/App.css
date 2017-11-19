@@ -3,11 +3,8 @@ html, body, .root {
 }
 body {
   line-height: 1.5;
+  color: #777;
 }
-body {
-  background: #e1f5fe ;
-}
-
 .list-books-title {
   padding: 10px 0;
   background: brown;
@@ -19,6 +16,7 @@ body {
 }
 .list-books-title h1 {
   color: white;
+  font-weight: normal;
 }
 .list-books-content {
   padding: 0 0 80px;
