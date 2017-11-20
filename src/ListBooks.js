@@ -49,7 +49,7 @@ ListBooks.propTypes = {
   onShelfChange: PropTypes.func.isRequired, 
   books: PropTypes.arrayOf(
     PropTypes.shape({
-      shelf: PropTypes.oneOf(['currentlyReading', 'wantToRead', 'read']).isRequired
+      shelf: PropTypes.oneOf(['currentlyReading', 'wantToRead', 'read', 'none'])
     })
   ).isRequired
 };
