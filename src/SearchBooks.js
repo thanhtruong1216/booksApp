@@ -13,7 +13,7 @@ class SearchBooks extends Component {
   static propTypes = {
     onShelfChange: PropTypes.func,
     books: PropTypes.arrayOf(PropTypes.shape({
-      shelf: PropTypes.oneOf(['currentlyReading', 'wantToRead', 'read'])
+      shelf: PropTypes.oneOf(['currentlyReading', 'wantToRead', 'read', 'none'])
     })) 
   };
   
@@ -39,7 +39,7 @@ class SearchBooks extends Component {
       <div >
         <div className="search-input-container">
           <Link className="close-search-arrow" to="/">Close</Link>
-          <input classname="search-input" type="text" placeholder="Search by title or author" onChange={this.search} />
+          <input className="search-input" type="text" placeholder="Search by title or author" onChange={this.search} />
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
