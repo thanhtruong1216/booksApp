@@ -1,6 +1,6 @@
 import React from 'react';
 import './Book.css';
-import PropsTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 const DEFAULT_IMAGE_URL = 'https://www.123freevectors.com/wp-content/uploads/new/icon/102-red-book-icon-free-vector-illustration.png';
 
@@ -18,7 +18,7 @@ const Book = (props) => {
       <div className="book-top">
         <div className="book-cover" style={{backgroundImage: `url("${ image}")`}}/>
         <div className="book-shelf-changer">
-          <select onChange={shelfChanger} value={book.shelf}>
+          <select onChange={shelfChanger}>
             <option value="none" disabled>Move to...</option>
             <option value="currentlyReading">Currently Reading</option>
             <option value="wantToRead">Want to Read</option>
@@ -34,7 +34,8 @@ const Book = (props) => {
 }
 
 Book.propsTypes = {
-  book: PropsTypes.string.isRequired,
-  onShelfChange: PropsTypes.func.isRequired
+  title: PropTypes.string.isRequired,
+  authors: PropTypes.array.isRequired,
+  onShelfChange: PropTypes.func.isRequired
 };
 export default Book;
