@@ -3,24 +3,23 @@ import { Link } from 'react-router-dom';
 import * as BooksAPI from './BooksAPI';
 import Book from './Book';
 import './SearchBooks.css';
+import PropTypes from 'prop-types';
 
 class SearchBooks extends Component {
+  static propTypes = {
+    onShelfChange: PropTypes.func,
+    books: PropTypes.arrayOf(PropTypes.shape({
+      shelf: PropTypes.oneOf(['currentlyReading', 'wantToRead', 'read'])
+    })) 
+  }
   state = {
     result: []
   }
-
-  search = (e) => {
+  search = e => {
     const { value: query } = e.target;
     const { books } = this.props;
-    if (!query) {
-      this.setState({result: []});
-      return;
-    }
-    BooksAPI.search(query, 10).then(result => {
-      if (!result || result.error) {
-        this.setState({result: []});
-        return;
-      }
+    query && BooksAPI.search(query, 10).then(result => {
+      (!result || result.error) && this.setState({result: []});
       result = result.map((book) => {
         const bookOnShelf = books.find(b => b.id === book.id);
         book.shelf = bookOnShelf ? bookOnShelf.shelf : null;
