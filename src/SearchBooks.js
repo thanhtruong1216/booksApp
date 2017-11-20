@@ -6,26 +6,28 @@ import './SearchBooks.css';
 import PropTypes from 'prop-types';
 
 class SearchBooks extends Component {
+  state = {
+    result: []
+  }
+
   static propTypes = {
     onShelfChange: PropTypes.func,
     books: PropTypes.arrayOf(PropTypes.shape({
       shelf: PropTypes.oneOf(['currentlyReading', 'wantToRead', 'read'])
     })) 
-  }
-  state = {
-    result: []
-  }
+  };
+  
   search = e => {
     const { value: query } = e.target;
     const { books } = this.props;
     query && BooksAPI.search(query, 10).then(result => {
-      (!result || result.error) && this.setState({result: []});
-      result = result.map((book) => {
+      !result || result.error && this.setState({result: []});
+      result = result.map(book => {
         const bookOnShelf = books.find(b => b.id === book.id);
         book.shelf = bookOnShelf ? bookOnShelf.shelf : null;
         return book;
       });
-      this.setState({result});
+      this.setState({ result });
     });
   }
 
