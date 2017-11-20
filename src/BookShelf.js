@@ -5,6 +5,13 @@ import './ListBooks';
 import PropTypes from 'prop-types';
 
 class BookShelf extends Component {
+  constructor() {
+    super();
+    this.state = {
+      show: true
+    }
+  }
+
   static propTypes = {
     numberOfBook: PropTypes.number.isRequired,
     onShelfChange: PropTypes.func.isRequired,
@@ -14,14 +21,8 @@ class BookShelf extends Component {
         authors: PropTypes.array.isRequired
       })
     ).isRequired
-  }
-  constructor() {
-    super();
-    this.state = {
-      show: true
-    }
-  }
-
+  };
+  
   toggleButton = () => {
     this.setState({
       show: !this.state.show
@@ -83,6 +84,4 @@ class BookShelf extends Component {
     );
   } 
 }
-
-
-export default BookShelf
+export default BookShelf;
