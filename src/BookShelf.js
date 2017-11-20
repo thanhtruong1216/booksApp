@@ -1,8 +1,20 @@
 import React, {Component} from 'react';
 import Book from './Book';
 import './BookShelf.css';
-import './ListBooks'
+import './ListBooks';
+import PropTypes from 'prop-types';
+
 class BookShelf extends Component {
+  static propTypes = {
+    numberOfBook: PropTypes.number.isRequired,
+    onShelfChange: PropTypes.func.isRequired,
+    bookshelfBooks: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        author: PropTypes.string.isRequired
+      })
+    ).isRequired
+  }
   constructor() {
     super();
     this.state = {
