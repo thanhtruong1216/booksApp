@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import BookShelf from './BookShelf';
 import './ListBooks.css';
+import PropTypes from 'prop-types';
 
 const BOOK_LISTS = [
   {
@@ -19,6 +20,15 @@ const BOOK_LISTS = [
 ];
 
 class ListBooks extends Component {
+  static propTypes = {
+    onShelfChange: PropTypes.func.isRequired, 
+    books: PropTypes.arrayOf(
+      PropTypes.shape({
+        shelf: PropTypes.oneOf(['currentlyReading', 'wantToRead', 'read']).isRequired
+      })
+    ).isRequired
+  }
+
   render() {
     const { onShelfChange, books } = this.props;
     return(
@@ -45,4 +55,5 @@ class ListBooks extends Component {
     );
   }
 }
+
 export default ListBooks
