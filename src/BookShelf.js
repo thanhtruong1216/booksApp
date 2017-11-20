@@ -11,7 +11,7 @@ class BookShelf extends Component {
     bookshelfBooks: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.string.isRequired,
-        author: PropTypes.string.isRequired
+        authors: PropTypes.array.isRequired
       })
     ).isRequired
   }
